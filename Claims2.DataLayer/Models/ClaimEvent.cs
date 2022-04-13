@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Claims2.DataLayer.Models
+{
+    public partial class ClaimEvent
+    {
+        public int? CoClaimId { get; set; }
+        public string? IiPoNumber { get; set; }
+        public int? Itemid { get; set; }
+        public int? IiClaimorderid { get; set; }
+        public string? Instructionbookedonfnol { get; set; }
+        public string? Instructionbookedonip { get; set; }
+        public string? Instructionbookedonipautomaticly { get; set; }
+        public string? Instructionpickedup { get; set; }
+        public string? Inspectionreadbyengineer { get; set; }
+        public string? Dateinspectionacknowledged { get; set; }
+        public string? Daterepairread { get; set; }
+        public string? Handlerreadprintedreport { get; set; }
+        public string? Inspectioncreated { get; set; }
+        public string? Goodsrecivedcalloutbooked { get; set; }
+        public string? Inspectionreported { get; set; }
+        public string? Berack { get; set; }
+        public string? Repairauth { get; set; }
+        public string? Inspcancelled { get; set; }
+        public string? Repaircomplete { get; set; }
+        public string? Repairfailed { get; set; }
+        public string? Phonecontactwithpolicyholder { get; set; }
+        public string? Firstcontactletter { get; set; }
+        public string? Bitoolused { get; set; }
+        public string? Variationtoinstructionph { get; set; }
+        public string? Variationtoinstructionic { get; set; }
+        public string? Variationtoinstructionii { get; set; }
+        public string? Excesscollected { get; set; }
+        public string? Smsemailtoph { get; set; }
+        public string? Nondelivery { get; set; }
+        public string? Invoiceinterim { get; set; }
+        public string? Invoicefinal { get; set; }
+        public string? Closeclaim { get; set; }
+        public string? Validationtool { get; set; }
+        public string? Carpetsample { get; set; }
+        public string? Inspectionreportto { get; set; }
+        public string? Quotetoinsurance { get; set; }
+        public string? Recommendrepudiation { get; set; }
+        public string? Bettermentagreed { get; set; }
+        public string? Instructiontonotrepair { get; set; }
+        public string? Repaireditemreturned { get; set; }
+        public string? Carpetdryingstarted { get; set; }
+        public string? Carpetdryingcompleted { get; set; }
+        public string? Carpetvoucherissued { get; set; }
+        public string? Carpetvoucherredeemed { get; set; }
+        public string? Replacementgoodsordered { get; set; }
+        public string? Additionalgoodsordered { get; set; }
+        public string? Claimitemwithdrawnbyph { get; set; }
+        public string? Claimitemwithdrawnbyic { get; set; }
+        public string? Claimitemrepudiated { get; set; }
+        public string? Itemreadytobeinvoiced { get; set; }
+        public string? Cashsettledbyinsurancecompany { get; set; }
+        public string? Cashsettledbysbs { get; set; }
+        public string? Purchaseorderraised { get; set; }
+        public string? Assignoutcome { get; set; }
+        public string? Deadonarrival { get; set; }
+        public string? Failedrepair { get; set; }
+        public string? Customerrejectedsettlement { get; set; }
+        public string? Cancelledduringtransit { get; set; }
+        public string? Incorrectitemsupplied { get; set; }
+        public string? Awaitingproofofpurchase { get; set; }
+        public string? Inspectionarranged { get; set; }
+        public string? Engineerbooked { get; set; }
+        public string? Closeitem { get; set; }
+        public string? Carpetfitted { get; set; }
+        public string? Awaitingfittingdate { get; set; }
+        public string? Replacementflooroffered { get; set; }
+        public string? Cleaninprogress { get; set; }
+        public string? Awaitingcarpetsample { get; set; }
+        public string? Sourcingpartsormaterialforrepair { get; set; }
+        public string? Repairoffered { get; set; }
+        public string? Voucherissued { get; set; }
+        public string? Repairtobecarriedout { get; set; }
+        public string? Voucheroffered { get; set; }
+        public string? Repairtobecarriedoutgiftware { get; set; }
+        public string? Sourcingpartsforrepair { get; set; }
+        public string? Repairtobecarriedoutjewellry { get; set; }
+        public string? Repairtobecarriedoutwatch { get; set; }
+        public string? Sourcingpartsforrepairjewellry { get; set; }
+        public string? Mandatesent { get; set; }
+        public string? DpdcollectionDate { get; set; }
+        public int Id { get; set; }
+        public int? LineItemCategory { get; set; }
+        public string? Telesale { get; set; }
+        public string? HoursPaused { get; set; }
+        public string? Lastitemdeldate { get; set; }
+        public string? Repairreqsent { get; set; }
+        public string? Repaircompletedate { get; set; }
+        public string? Replaceddate { get; set; }
+        public string? MaxTimeToReturnCallInMinutes { get; set; }
+        public string? InspectionReportDate { get; set; }
+        public string? CustomerInformedOfInspectionResultsDate { get; set; }
+        public string? SuccessfulLastContractPriorToGoodsOrdered { get; set; }
+    }
+}

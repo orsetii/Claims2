@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Claims2.DataLayer.Models
+{
+    public partial class Invoice
+    {
+        public int? InvoiceNumber { get; set; }
+        public short? InvoiceTypeCode { get; set; }
+        public string? InvoiceType { get; set; }
+        public string? InvoiceOrCredit { get; set; }
+        public DateTime? InvoiceDate { get; set; }
+        public string? AccountRef { get; set; }
+        public string? Name { get; set; }
+        public string? Address1 { get; set; }
+        public string? Address2 { get; set; }
+        public string? Address3 { get; set; }
+        public string? Address4 { get; set; }
+        public string? Address5 { get; set; }
+        public string? CAddress1 { get; set; }
+        public string? CAddress2 { get; set; }
+        public string? CAddress3 { get; set; }
+        public string? CAddress4 { get; set; }
+        public string? CAddress5 { get; set; }
+        public string? DelName { get; set; }
+        public string? DelAddress1 { get; set; }
+        public string? DelAddress2 { get; set; }
+        public string? DelAddress3 { get; set; }
+        public string? DelAddress4 { get; set; }
+        public string? DelAddress5 { get; set; }
+        public string? OrderNumber { get; set; }
+        public string? ContactName { get; set; }
+        public string? TakenBy { get; set; }
+        public string? CustOrderNumber { get; set; }
+        public string? CustTelNumber { get; set; }
+        public string? Notes1 { get; set; }
+        public string? Notes2 { get; set; }
+        public string? Notes3 { get; set; }
+        public double? CustDiscRate { get; set; }
+        public double? ForeignItemsNet { get; set; }
+        public double? ForeignItemsTax { get; set; }
+        public double? ForeignItemsGross { get; set; }
+        public double? ItemsNet { get; set; }
+        public double? ItemsTax { get; set; }
+        public double? ItemsGross { get; set; }
+        public double? TaxRate1 { get; set; }
+        public double? TaxRate2 { get; set; }
+        public double? TaxRate3 { get; set; }
+        public double? TaxRate4 { get; set; }
+        public double? TaxRate5 { get; set; }
+        public double? NetAmount1 { get; set; }
+        public double? NetAmount2 { get; set; }
+        public double? NetAmount3 { get; set; }
+        public double? NetAmount4 { get; set; }
+        public double? NetAmount5 { get; set; }
+        public double? TaxAmount1 { get; set; }
+        public double? TaxAmount2 { get; set; }
+        public double? TaxAmount3 { get; set; }
+        public double? TaxAmount4 { get; set; }
+        public double? TaxAmount5 { get; set; }
+        public string? GlobalNomCode { get; set; }
+        public string? GlobalDetails { get; set; }
+        public string? GlobalTaxCode { get; set; }
+        public short? GlobalDeptNumber { get; set; }
+        public string? GlobalDeptName { get; set; }
+        public short? CourierNumber { get; set; }
+        public string? CourierName { get; set; }
+        public string? Consignment { get; set; }
+        public string? CarrNomCode { get; set; }
+        public string? CarrTaxCode { get; set; }
+        public short? CarrDeptNumber { get; set; }
+        public string? CarrDeptName { get; set; }
+        public double? ForeignCarrNet { get; set; }
+        public double? ForeignCarrTax { get; set; }
+        public double? ForeignCarrGross { get; set; }
+        public double? CarrNet { get; set; }
+        public double? CarrTax { get; set; }
+        public double? CarrGross { get; set; }
+        public double? ForeignInvoiceNet { get; set; }
+        public double? ForeignInvoiceTax { get; set; }
+        public double? ForeignInvoiceGross { get; set; }
+        public double? InvoiceNet { get; set; }
+        public double? InvoiceTax { get; set; }
+        public double? InvoiceGross { get; set; }
+        public short? Currency { get; set; }
+        public short? CurrencyType { get; set; }
+        public double? EuroGross { get; set; }
+        public double? EuroRate { get; set; }
+        public double? ForeignRate { get; set; }
+        public short? SettlementDueDays { get; set; }
+        public double? SettlementDiscRate { get; set; }
+        public double? ForeignSettlementDiscAmount { get; set; }
+        public double? ForeignSettlementTotal { get; set; }
+        public double? ForeignAmountPrepaid { get; set; }
+        public double? SettlementDiscAmount { get; set; }
+        public double? SettlementTotal { get; set; }
+        public double? AmountPrepaid { get; set; }
+        public string? PaymentRef { get; set; }
+        public string? Printed { get; set; }
+        public short? PrintedCode { get; set; }
+        public string? Posted { get; set; }
+        public short? PostedCode { get; set; }
+    }
+}
