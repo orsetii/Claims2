@@ -1,0 +1,12 @@
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+@{
+    var claims = new ServiceLayer.User().Claims();
+}
+
+@foreach (var claim in claims)
+{
+    <ClaimCard Claim="@claim" />
+}
