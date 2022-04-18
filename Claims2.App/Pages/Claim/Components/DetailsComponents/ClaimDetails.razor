@@ -1,0 +1,38 @@
+﻿
+<h2 class="card-title">Claim Details</h2>
+<MudGrid>
+    <MudItem xs="12" sm="6" md="6">
+        <MudField Label="Insurer Name" Variant="Variant.Outlined">
+            @Claim.InsuredCompanyName
+        </MudField>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="6">
+        <MudField Label="Policy Holder Name" Variant="Variant.Outlined">
+            @PHName
+            </MudField>
+    </MudItem>    
+    <MudItem xs="12" sm="12" md="12" >
+        <MudField Label="Insured Address" Variant="Variant.Outlined" FullWidth="true">
+            <textarea style="height: 8vh;">@InsuredAddress</textarea>
+        </MudField>
+    </MudItem>
+</MudGrid>
+@code {
+
+    [Parameter]
+    public InsuranceClaim1 Claim { get; set; }
+
+    protected string PHName => String.Join(" ", new string[] { 
+        Claim.InsuredTitle ?? "Mx.",
+        Claim.InsuredFirstName ?? "Unknown",
+        Claim.InsuredLastName ?? "Unknown" 
+    });
+
+    protected string InsuredAddress => String.Join("\n", new string[] {
+        Claim.InsuredAddress1 ?? "",
+        Claim.InsuredAddress2 ?? ", ",
+        Claim.InsuredAddress3 ?? ", ",
+        Claim.InsuredAddress4 ?? ", ",
+        Claim.InsuredPostCode ?? "" 
+    });
+}

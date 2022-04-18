@@ -1,0 +1,47 @@
+﻿@page "/claim/{claimID}"
+@implements IDisposable
+@inject StateContainer StateContainer
+@using Claims2.App.Pages.Claim.Components
+@using Claims2.DataLayer.Models
+@using Claims2.ServiceLayer
+
+<PageTitle>SBS Claims - @claimID</PageTitle>
+
+<MudTabs Elevation="2" Rounded="true" Centered="true" Style="padding-bottom: 20px;">
+    <MudTabPanel Icon="@Icons.Material.Filled.Home" ToolTip="Home">
+        <Home Claim="@Claim.Claim" />
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.Info" ToolTip="Details">
+        <Details Claim="@Claim.Claim"  />
+    </MudTabPanel>
+
+    <MudTabPanel Icon="@Icons.Material.Filled.ReceiptLong" ToolTip="Orders">
+        <Orders claimID="@claimID"/>
+        </MudTabPanel>
+
+    <MudTabPanel Icon="@Icons.Material.Filled.Description" BadgeData='"99+"' BadgeColor="Color.Error" ToolTip="Documents" />
+    <MudTabPanel Icon="@Icons.Material.Filled.Warning" ToolTip="Risk"/>
+</MudTabs>
+
+
+@code {
+    [Parameter]
+    public string claimID { get; set; }
+
+    public ClaimService Claim { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Claim = new ClaimService(Int32.Parse(claimID));
+    }
+
+    protected override void OnAfterRender(bool firstRender) 
+    {
+            StateContainer.Property = ClaimOrderService.GetClaimOrderServices(Int32.Parse(claimID));
+
+
+    }    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+}

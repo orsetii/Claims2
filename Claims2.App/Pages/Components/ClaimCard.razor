@@ -1,0 +1,14 @@
+﻿@using Claims2.DataLayer.Models
+
+<MudItem xs="12" sm="6" md="4">
+    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+        @Claim.InsuranceClaimId
+        <br />
+        <a href="./claim/@Claim.InsuranceClaimId" class="btn btn-primary">View Claim</a>
+    </MudPaper>
+</MudItem>
+
+@code {
+    [Parameter]
+    public InsuranceClaim1 Claim { get; set; }
+}

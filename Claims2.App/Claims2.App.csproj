@@ -11,4 +11,8 @@
       <ProjectReference Include="..\..\Claims2\Claims2.ServiceLayer\Claims2.ServiceLayer.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MudBlazor" Version="6.0.9" />
+    </ItemGroup>
+
 </Project>

@@ -1,0 +1,47 @@
+﻿@implements IDisposable
+@inject StateContainer StateContainer
+
+
+<MudStack AlignItems="AlignItems.Stretch" >
+    @foreach(var order in claimOrders)
+    {
+        <MudPaper Class="pa-3 orderRow">
+                <MudIconButton Icon="@GetIcon(order.Category)" Size="Size.Large" />
+        </MudPaper>
+    }
+</MudStack>
+@code {
+    [Parameter]
+    public string claimID { get; set; }
+
+    public List<ClaimOrderService> claimOrders { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        claimOrders = (List<ClaimOrderService>)StateContainer.Property;
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+
+        public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+
+
+    protected string GetIcon(LineItemCategory category)
+    {
+        switch(category)
+        {
+            case LineItemCategory.Fee:
+                return Icons.Material.Filled.Receipt;
+            case LineItemCategory.Product:
+                return Icons.Material.Filled.Inventory2;
+            case LineItemCategory.Service:
+                return Icons.Material.Filled.BuildCircle;
+            default:
+                throw new ArgumentException();
+        }
+    }
+}

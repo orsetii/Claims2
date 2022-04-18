@@ -1,22 +1,15 @@
-@page "/"
-
-<PageTitle>Index</PageTitle>
-
-@{
-    var claims = new ServiceLayer.User().Claims();
-}
-@foreach (var claim in claims)
-{
-    <ClaimCard Claim="@claim" />
-}
-
+﻿@using Claims2.App.Pages.Claim.Components.DetailsComponents
 <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                @Claim.InsuredFirstName
+            </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                <h5 class="card-title">Card title</h5>
+            </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="12" md="4">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
@@ -29,19 +22,31 @@
                 <MudItem xs="12">
                     <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
                 </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                </MudItem>
+
             </MudGrid>
         </MudItem>
         <MudItem xs="12" sm="6">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"></MudPaper>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
+                <ClaimDetails Claim="@Claim" />
+            </MudPaper>
         </MudItem>
-        <MudItem xs="12" sm="6" md="4">
+        <MudItem xs="12" sm="6" md="6">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
         </MudItem>
-        <MudItem xs="12" sm="6" md="4">
+        <MudItem xs="12" sm="6" md="6">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
         </MudItem>
-        <MudItem xs="12" sm="12" md="4">
+        <MudItem xs="12" sm="12" md="6">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
         </MudItem>
     </MudGrid>
 </MudContainer>
+
+@code {
+    [Parameter]
+    public InsuranceClaim1 Claim { get; set; }
+
+}
