@@ -65,5 +65,9 @@ a, .btn-link {
 
 
 .orderRow {
-    height: 7vh;
+    height: 5vh;
+}
+
+.claimOrderDescription {
+    width: 100%;
 }

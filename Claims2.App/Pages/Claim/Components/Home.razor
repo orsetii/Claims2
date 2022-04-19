@@ -1,6 +1,19 @@
-﻿@Claim.Insured2Email
+﻿@implements IDisposable
+@inject ClaimDataContainer _claimDataContainer
+
+@_claimDataContainer.Property.Claim.Claim.Insured2Email
 
 @code {
-    [Parameter]
-    public InsuranceClaim1 Claim { get; set; }
+    protected override void OnInitialized()
+    {
+        _claimDataContainer.OnChange += StateHasChanged;
+    }
+
+
+        public void Dispose()
+    {
+        _claimDataContainer.OnChange -= StateHasChanged;
+    }
+
+
 }

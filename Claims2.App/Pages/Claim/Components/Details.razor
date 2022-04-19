@@ -1,9 +1,12 @@
-﻿@using Claims2.App.Pages.Claim.Components.DetailsComponents
+﻿@implements IDisposable
+@inject ClaimDataContainer _claimDataContainer
+
+
 <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                @Claim.InsuredFirstName
+                @_claimDataContainer.Property.Claim.Claim.InsuredFirstName
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="4">
@@ -30,7 +33,23 @@
         </MudItem>
         <MudItem xs="12" sm="6">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
-                <ClaimDetails Claim="@Claim" />
+                <MudGrid>
+                    <MudItem xs="12" sm="6" md="6">
+                        <MudField Label="Insurer Name" Variant="Variant.Outlined">
+                            @_claimDataContainer.Property.Claim.Claim.InsuredCompanyName
+                        </MudField>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" md="6">
+                        <MudField Label="Policy Holder Name" Variant="Variant.Outlined">
+                            @PHName
+                        </MudField>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="12">
+                        <MudField Label="Insured Address" Variant="Variant.Outlined" FullWidth="true">
+                            @InsuredAddress
+                            </MudField>
+                    </MudItem>
+                </MudGrid>
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="6">
@@ -46,7 +65,30 @@
 </MudContainer>
 
 @code {
-    [Parameter]
-    public InsuranceClaim1 Claim { get; set; }
+    protected string PHName => String.Join(" ", new string[] {
+        _claimDataContainer.Property.Claim.Claim.InsuredTitle ?? "Mx.",
+        _claimDataContainer.Property.Claim.Claim.InsuredFirstName ?? "Unknown",
+        _claimDataContainer.Property.Claim.Claim.InsuredLastName ?? "Unknown"
+    });
+
+    protected string InsuredAddress => String.Join("\n", new string[] {
+        _claimDataContainer.Property.Claim.Claim.InsuredAddress1 ?? "",
+        _claimDataContainer.Property.Claim.Claim.InsuredAddress2 ?? ", ",
+        _claimDataContainer.Property.Claim.Claim.InsuredAddress3 ?? ", ",
+        _claimDataContainer.Property.Claim.Claim.InsuredAddress4 ?? ", ",
+        _claimDataContainer.Property.Claim.Claim.InsuredPostCode ?? ""
+    });
+
+    protected override void OnInitialized()
+    {
+        _claimDataContainer.OnChange += StateHasChanged;
+    }
+
+
+    public void Dispose()
+    {
+        _claimDataContainer.OnChange -= StateHasChanged;
+    }
+
 
 }

@@ -1,47 +1,75 @@
 ﻿@implements IDisposable
-@inject StateContainer StateContainer
+@inject ClaimDataContainer _claimDataContainer
 
 
-<MudStack AlignItems="AlignItems.Stretch" >
-    @foreach(var order in claimOrders)
+<MudStack AlignItems="AlignItems.Stretch" Class="mt-8">
+    @foreach (var order in Data.ClaimOrderServices)
     {
-        <MudPaper Class="pa-3 orderRow">
-                <MudIconButton Icon="@GetIcon(order.Category)" Size="Size.Large" />
+        <MudPaper Class="pa-3 orderRow" Elevation="3">
+            <MudGrid Spacing="2" Justify="Justify.Center">
+                <MudItem lg="1">
+                    @if (IsOrderCancelled(order))
+                    {
+                        <MudBadge Content="Quantity(order)"
+                          Color="Color.Error" Overlap="true" Class="mx-2">
+                            <MudIconButton Icon="@Data.GetIcon(order.Category)" Size="Size.Large" Color="Color.Error" />
+                        </MudBadge>
+                    }
+                    else
+                    {
+                        <MudBadge Content="Quantity(order)"
+                          Color="Color.Primary" Overlap="true" Class="mx-4 my-n2">
+                            <MudIconButton Icon="@Data.GetIcon(order.Category)" Size="Size.Large" Color="Color.Default" />
+                        </MudBadge>
+                    }
+
+                </MudItem>
+                <MudItem lg="4">
+                    <MudChip lg="3" Label="true" Color="Color.Primary" Class="mr-3 claimOrderDescription" data-toggle="tooltip" data-placement="top" title="@order.ClaimOrder.ShortDescription">@order.ClaimOrder.ShortDescription</MudChip>
+                </MudItem>
+                <MudItem lg="1">
+                    <MudChip Color="Color.Secondary" Style="width: 100%;">Buy: @order.ClaimOrder.BuyRate.ToString("c2")</MudChip>
+                </MudItem>
+                <MudItem lg="1">
+                    <MudChip Color="Color.Info" Style="width: 100%;">Sell: @order.ClaimOrder.SellRate.ToString("c2")</MudChip>
+                </MudItem>
+                <MudItem lg="3">
+                    <MudChip Label="true" Color="Color.Default" Class="ml-3 mr-8 claimOrderDescription">Status Placeholder</MudChip>
+                </MudItem>
+                <MudItem lg="2" Class="">
+                    <MudIconButton Icon="@Icons.Material.Outlined.Search" Color="Color.Inherit" Size="Size.Medium" Class="ml-16" />
+                    <MudIconButton Icon="@Icons.Material.Outlined.MoreVert" Color="Color.Inherit" Size="Size.Medium" />
+                </MudItem>
+            </MudGrid>
+
         </MudPaper>
+
     }
 </MudStack>
 @code {
-    [Parameter]
-    public string claimID { get; set; }
 
-    public List<ClaimOrderService> claimOrders { get; set; }
-
+    public ClaimViewData Data { get => _claimDataContainer.Property; }
 
     protected override void OnInitialized()
     {
-        claimOrders = (List<ClaimOrderService>)StateContainer.Property;
-        StateContainer.OnChange += StateHasChanged;
+        _claimDataContainer.OnChange += StateHasChanged;
     }
 
 
-        public void Dispose()
+    public void Dispose()
     {
-        StateContainer.OnChange -= StateHasChanged;
+        _claimDataContainer.OnChange -= StateHasChanged;
     }
 
-
-    protected string GetIcon(LineItemCategory category)
+    public bool IsOrderCancelled(ClaimOrderService co)
     {
-        switch(category)
-        {
-            case LineItemCategory.Fee:
-                return Icons.Material.Filled.Receipt;
-            case LineItemCategory.Product:
-                return Icons.Material.Filled.Inventory2;
-            case LineItemCategory.Service:
-                return Icons.Material.Filled.BuildCircle;
-            default:
-                throw new ArgumentException();
-        }
+        return  Quantity(co) == 0;
     }
+
+    public int Quantity(ClaimOrderService co)
+    {
+        return co.ClaimOrder.OrderedQuantity - co.ClaimOrder.CancelledQuantity;
+    }
+
+
 }
