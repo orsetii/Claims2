@@ -16,12 +16,16 @@
         <Details/>
     </MudTabPanel>
 
-    <MudTabPanel Icon="@Icons.Material.Filled.ReceiptLong" ToolTip="Orders">
+    <MudTabPanel Icon="@Icons.Material.Filled.ReceiptLong" ToolTip="Orders" ID='"OrdersTabPanel"' BadgeColor="OrdersCountColor" BadgeData="OrdersCountString">
         <Orders/>
     </MudTabPanel>
 
-    <MudTabPanel Icon="@Icons.Material.Filled.Description" BadgeData='"99+"' BadgeColor="Color.Error" ToolTip="Documents"/>
-    <MudTabPanel Icon="@Icons.Material.Filled.Warning" ToolTip="Risk"/>
+    <MudTabPanel Icon="@Icons.Material.Filled.Description" BadgeData='"99+"' BadgeColor="Color.Error" ToolTip="Documents">
+        
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.Warning" ToolTip="Risk">
+        
+    </MudTabPanel>
 </MudTabs>
 
 
@@ -29,7 +33,11 @@
 
     [Parameter]
     public string claimID { get; set; }
-    
+
+    public string OrdersCountString { get; set; } = " ";
+
+    public Color OrdersCountColor { get; set; } = Color.Primary;
+
 
     protected override void OnInitialized()
     {
@@ -39,6 +47,7 @@
     protected override void OnAfterRender(bool firstRender)
     {
         _claimDataContainer.Property.GetCOs();
+        OrdersCountString = _claimDataContainer.Property.ClaimOrderServices.Count.ToString();
     }
 
     public void Dispose()

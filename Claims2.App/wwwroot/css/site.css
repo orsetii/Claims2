@@ -65,9 +65,18 @@ a, .btn-link {
 
 
 .orderRow {
-    height: 5vh;
+    height: 75px;
 }
 
 .claimOrderDescription {
     width: 100%;
 }
+
+#extraInstructions > div > div > div.mud-input-slot.mud-input-root.mud-input-root-outlined {
+    height: 325px;
+}
+
+#incidentDetails > div > div > div.mud-input-slot.mud-input-root.mud-input-root-outlined {
+    height: 325px;
+}
+

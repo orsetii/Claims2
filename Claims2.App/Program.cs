@@ -2,15 +2,19 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Claims2.App.Data;
 using MudBlazor.Services;
+using Claims2.ServiceLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ClaimDataContainer>();
 builder.Services.AddMudServices();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

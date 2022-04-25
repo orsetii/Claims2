@@ -1,4 +1,6 @@
-﻿using Claims2.ServiceLayer;
+﻿using Claims2.DataLayer.Models;
+using Claims2.ServiceLayer;
+using Claims2.ServiceLayer.Services;
 using MudBlazor;
 
 namespace Claims2.App.Data
@@ -17,7 +19,7 @@ namespace Claims2.App.Data
             }
         }
 
-        public event Action? OnChange;
+        public event System.Action? OnChange;
 
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
@@ -27,6 +29,7 @@ namespace Claims2.App.Data
         public ClaimService Claim { get; set; }
 
         public List<ClaimOrderService>? ClaimOrderServices { get; set; }
+        public List<ClaimItemService> ClaimItems => Claim.ClaimItemServices.ToList();
 
 
         public ClaimViewData(int claimID)

@@ -4,18 +4,44 @@
 
 <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                @_claimDataContainer.Property.Claim.Claim.InsuredFirstName
+        <MudItem xs="12" sm="6">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 400px;">
+                <MudGrid>
+                    <MudItem xs="12" sm="6" md="6">
+                        <MudField Label="Insurer Name" Variant="Variant.Outlined">
+                            @_claimDataContainer.Property.Claim.Claim.InsuredCompanyName
+                        </MudField>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" md="6">
+                        <MudField Label="Policy Holder Name" Variant="Variant.Outlined">
+                            @PHName
+                        </MudField>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="12">
+                        <MudField Label="Insured Address" Variant="Variant.Outlined" FullWidth="true">
+                            @InsuredAddress
+                        </MudField>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="12">
+                    </MudItem>
+                </MudGrid>
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                <h5 class="card-title">Card title</h5>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 400px;">
+                <MudField Label="Incident Details" Variant="Variant.Outlined" FullWidth="true" Style="height: 320px;" id="incidentDetails">
+                    @Data.Claim.Claim.AccidentComments
+                </MudField>
+
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 400px;" >
+                            <MudField Label="Extra Instructions (LA)" Variant="Variant.Outlined" FullWidth="true" Style="height: 320px;" id="extraInstructions">
+                    @Data.Claim.Claim.SpecialInstructions
+                </MudField>
+
+            </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6">
             <MudGrid>
@@ -31,29 +57,9 @@
 
             </MudGrid>
         </MudItem>
-        <MudItem xs="12" sm="6">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
-                <MudGrid>
-                    <MudItem xs="12" sm="6" md="6">
-                        <MudField Label="Insurer Name" Variant="Variant.Outlined">
-                            @_claimDataContainer.Property.Claim.Claim.InsuredCompanyName
-                        </MudField>
-                    </MudItem>
-                    <MudItem xs="12" sm="6" md="6">
-                        <MudField Label="Policy Holder Name" Variant="Variant.Outlined">
-                            @PHName
-                        </MudField>
-                    </MudItem>
-                    <MudItem xs="12" sm="12" md="12">
-                        <MudField Label="Insured Address" Variant="Variant.Outlined" FullWidth="true">
-                            @InsuredAddress
-                            </MudField>
-                    </MudItem>
-                </MudGrid>
-            </MudPaper>
-        </MudItem>
         <MudItem xs="12" sm="6" md="6">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+            </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="6">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
@@ -65,6 +71,10 @@
 </MudContainer>
 
 @code {
+
+
+    private ClaimViewData Data => _claimDataContainer.Property;
+
     protected string PHName => String.Join(" ", new string[] {
         _claimDataContainer.Property.Claim.Claim.InsuredTitle ?? "Mx.",
         _claimDataContainer.Property.Claim.Claim.InsuredFirstName ?? "Unknown",

@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@inject IHttpContextAccessor httpContext
+@inject UserService User
 <PageTitle>SBS Claims</PageTitle>
 
 <MudThemeProvider />
@@ -30,8 +32,15 @@
 @code {
     bool _drawerOpen = true;
 
+    protected override void OnInitialized()
+    {
+        User.SetIdentity(httpContext.HttpContext.User);
+    }
+
+
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
+
 }

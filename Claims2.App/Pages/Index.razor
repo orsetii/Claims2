@@ -1,9 +1,10 @@
 @page "/"
+@inject UserService User
 
 <PageTitle>Index</PageTitle>
 
 @{
-    var claims = new ServiceLayer.User().Claims();
+    var claims = User.Claims();
 }
 @foreach (var claim in claims)
 {
